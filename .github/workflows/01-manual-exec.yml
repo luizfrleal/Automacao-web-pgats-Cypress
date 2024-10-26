@@ -33,7 +33,7 @@ jobs:
 
       # Passo para gerar o relatório Mochawesome (caso o comando yarn run e2e não gere automaticamente)
       - name: Gerando relatório Mochawesome
-      run: yarn run mochawesome-merge ./reports/mochawesome*.json > ./reports/mochawesome-report.json
+        run: yarn run mochawesome-merge ./reports/mochawesome*.json > ./reports/mochawesome-report.json
 
       # Upload de relatórios de testes
       - name: Upload do relatório de testes
