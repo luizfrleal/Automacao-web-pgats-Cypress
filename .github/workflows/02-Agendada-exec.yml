@@ -8,7 +8,7 @@ name:
 
 on:
   schedule:
-    - cron: '40 6 * * sat'
+    - cron: '25 6 * * sat'
 
 jobs:
   # descrição do job
@@ -27,7 +27,7 @@ jobs:
       - name: Instalando depedências
         run: yarn
 
-      - name: Instaladno playwright
+      - name: Instaladno Cypress
         run: yarn cypress install
 
       - name: Teste E2E
@@ -38,5 +38,5 @@ jobs:
         if: ${{! Cancelled() }}
         with:
           name: Relatorio de testes
-          path: ./playwright-report
+          path: ./reports
         # run:
