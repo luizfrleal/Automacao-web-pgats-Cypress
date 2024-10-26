@@ -30,6 +30,11 @@ jobs:
       - name: Executando testes E2E
         run: yarn run e2e
 
+
+      # Passo para gerar o relatório Mochawesome (caso o comando yarn run e2e não gere automaticamente)
+      - name: Gerando relatório Mochawesome
+      run: yarn run mochawesome-merge ./reports/mochawesome*.json > ./reports/mochawesome-report.json
+
       # Upload de relatórios de testes
       - name: Upload do relatório de testes
         if: ${{ !cancelled() }}
