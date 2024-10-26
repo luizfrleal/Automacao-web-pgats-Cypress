@@ -1,0 +1,39 @@
+# CI de Nível 01 - Disparo manual a partir de 1 clique
+
+# Nome do workflow
+name: 'Execução Manual - nível 1'
+
+# Trigger de execução manual
+on:
+  workflow_dispatch:
+
+jobs:
+  # Descrição do job
+  e2e-tests:
+    # Máquina que o job vai executar
+    runs-on: ubuntu-latest
+
+    # Passo a passo das ações do job
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Instalando Yarn
+        run: npm install -g yarn
+
+      - name: Instalando dependências do projeto
+        run: yarn
+
+      - name: Instalando Cypress
+        run: yarn cypress install
+
+      - name: Executando testes E2E
+        run: yarn run e2e
+
+      # Upload de relatórios de testes
+      - name: Upload do relatório de testes
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: Relatorio de testes
+          path: ./reports
